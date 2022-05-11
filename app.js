@@ -3,9 +3,11 @@ const express = require('express');
 const cors = require('cors');
 require("dotenv").config();
 
+
 const app = express();
 const treatmentsRouter = require("./routes/treatments.route.js")
-
+const bookingRouter = require("./routes/booking.route.js")
+const loginRouter = require("./routes/login.route.js")
 // middleware 
 app.use(cors());
 app.use(express.json())
@@ -13,6 +15,11 @@ app.use(express.json())
 /* get treatments */
 app.use('/treatments', treatmentsRouter)
 
+/* create booking */
+app.use('/booking', bookingRouter)
+
+/* login  */
+app.use("/login", loginRouter)
 
 
  /* testing api  */
