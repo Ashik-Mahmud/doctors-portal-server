@@ -9,6 +9,7 @@ const treatmentsRouter = require("./routes/treatments.route.js")
 const bookingRouter = require("./routes/booking.route.js")
 const loginRouter = require("./routes/login.route.js")
 const availableRouter = require("./routes/available.route.js")
+const userRouter = require("./routes/users.route.js")
 // middleware 
 app.use(cors());
 app.use(express.json())
@@ -25,6 +26,9 @@ app.use("/login", loginRouter)
 
 /* login  */
 app.use("/available", availableRouter)
+
+/* users  */
+app.use("/users", userRouter);
 
  /* testing api  */
 app.get('/', (req, res) =>{
