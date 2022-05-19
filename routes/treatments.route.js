@@ -1,8 +1,9 @@
 
 const router = require("express").Router();
-const { getAllTreatments } = require("../Controller/treatments.controller");
+const { getAllTreatments , getTreatmentsServices} = require("../Controller/treatments.controller");
 /* Get treatments */
 router.get("/", getAllTreatments)
+router.get("/services", getTreatmentsServices)
 
 
 module.exports = router;

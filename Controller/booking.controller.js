@@ -1,6 +1,10 @@
 const { ObjectId } = require("mongodb");
 const client = require("../Connection/connection");
+const SendEmail = require("../SendEmail/SendEmail");
 const bookingCollection = client.db('doctors-portal').collection("bookings");
+
+
+
 const createBookingTreatment = async(req, res) => {
     await client.connect();
     const data = req.body; 
@@ -11,7 +15,8 @@ const createBookingTreatment = async(req, res) => {
     }
     const result = await bookingCollection.insertOne(data)
     if(result.acknowledged){
-        res.send({success: true, message: "Booking successfully done."})
+        res.send({success: true, message: "Booking successfully done & check your email."})
+        SendEmail(data)
     }
 }
 
