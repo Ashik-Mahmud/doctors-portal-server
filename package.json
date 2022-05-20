@@ -19,6 +19,7 @@
     "nodemailer": "^6.7.5",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "nodemon": "^2.0.16",
+    "stripe": "^9.2.0",
     "to": "^0.2.9",
     "update": "^0.7.4"
   }

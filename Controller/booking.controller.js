@@ -2,8 +2,7 @@ const { ObjectId } = require("mongodb");
 const client = require("../Connection/connection");
 const SendEmail = require("../SendEmail/SendEmail");
 const bookingCollection = client.db('doctors-portal').collection("bookings");
-
-
+const paymentCollection = client.db("doctors-portal").collection("payments");
 
 const createBookingTreatment = async(req, res) => {
     await client.connect();
@@ -54,4 +53,24 @@ const deleteCurrentUserBooking = async(req, res) => {
     
 }
 
-module.exports = {createBookingTreatment, getCurrentUserBooking, deleteCurrentUserBooking}
+
+const patchBooking = async(req, res) =>{
+    await client.connect();
+    const data = req.body;
+    const bookingId = data.appointmentId;
+    const updateDoc = {
+        $set: {
+            status: data?.status,
+            transactionId: data?.transactionId
+        }
+    }
+    const result = await bookingCollection.updateOne({_id: ObjectId(bookingId)}, updateDoc);
+    const insertedData = await paymentCollection.insertOne(data);
+    if(result.acknowledged || insertedData.acknowledged){
+        res.send({success: true, message: "Data Saved successfully done."})
+    }
+
+}
+
+
+module.exports = {createBookingTreatment, getCurrentUserBooking, deleteCurrentUserBooking, patchBooking}

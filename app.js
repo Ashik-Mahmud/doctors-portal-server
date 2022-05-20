@@ -11,6 +11,7 @@ const loginRouter = require("./routes/login.route.js")
 const availableRouter = require("./routes/available.route.js")
 const userRouter = require("./routes/users.route.js")
 const doctorsRouter = require("./routes/doctors.route.js")
+const paymentRouter = require("./routes/payment.route.js")
 // middleware 
 app.use(cors());
 app.use(express.json())
@@ -34,6 +35,8 @@ app.use("/users", userRouter);
 /* doctors */
 app.use("/doctors", doctorsRouter)
 
+/* Payments Endpoints */
+app.use("/payments", paymentRouter)
  /* testing api  */
 app.get('/', (req, res) =>{
     res.send({success: true, message: "yeah successfully done to create first api"})
